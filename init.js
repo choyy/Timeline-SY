@@ -20,7 +20,7 @@ const search = location.search
 const obj = new URLSearchParams(search);
 id = obj.get('blockid')
 }
-
+window.baseid = id
 var dataobject = {
     "title": {
         "text": {

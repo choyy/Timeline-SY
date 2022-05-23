@@ -2,7 +2,7 @@
 function saveData(dataobject) {
     var data_string = JSON.stringify(dataobject);
     var block_attrs = {
-        "id": window.frameElement.parentElement.parentElement.dataset.nodeId,
+        "id": window.baseid,
         "attrs": {
             "custom-dataobject": data_string
         }
