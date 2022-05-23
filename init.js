@@ -8,15 +8,19 @@ var options = {
     start_at_slide: 0,
     initial_zoom: 0
 };
+
 var id = ''
+
 if(window.frameElement){
-var id = window.frameElement.parentElement.parentElement.dataset.nodeId;
+ id = window.frameElement.parentElement.parentElement.dataset.nodeId;
 }
+
 else{
 const search = location.search
 const obj = new URLSearchParams(search);
 id = obj.get('blockid')
 }
+
 var dataobject = {
     "title": {
         "text": {
@@ -39,6 +43,7 @@ var dataobject = {
         }
     ],
 }
+
 $.ajax({
     type: "POST",
     url: "/api/attr/getBlockAttrs",
