@@ -4,21 +4,30 @@ var options = {
     timenav_position: 'top',
     language: '/widgets/timeline-sy/timeline3/js/locale/zh-cn.json',
     font: '/widgets/timeline-sy/font.default.modified.css',
+    default_bg_color: 'white',
     start_at_end: false,
     start_at_slide: 0,
     initial_zoom: 0
 };
 
-var id = ''
-
-if(window.frameElement){
- id = window.frameElement.parentElement.parentElement.dataset.nodeId;
+// 随思源主题自动切换主题
+// https://ld246.com/article/1653294035002/comment/1653327149164?r=bgt#comments
+if (window.top.siyuan.config.appearance.mode === 1) {
+    var obj = document.getElementById("timelinetheme");
+    obj.setAttribute("href", "timeline3/css/themes/timeline.theme.dark.css");
+    options.default_bg_color = "#000000";
 }
 
-else{
-const search = location.search
-const obj = new URLSearchParams(search);
-id = obj.get('blockid')
+var id = ''
+
+if (window.frameElement) {
+    id = window.frameElement.parentElement.parentElement.dataset.nodeId;
+}
+
+else {
+    const search = location.search
+    const obj = new URLSearchParams(search);
+    id = obj.get('blockid')
 }
 window.baseid = id
 var dataobject = {

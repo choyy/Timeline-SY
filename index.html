@@ -1,170 +1,9 @@
 <head>
-    <link title="timeline-styles" rel="stylesheet" href="timeline3/css/timeline.css">
+    <link title="timeline-styles" rel="stylesheet" id="timelinetheme" href="timeline3/css/timeline.css">
+    <script>
+    </script>
     <script src="timeline3/js/timeline.js"></script>
     <script src="manipulations.js"></script>
-    <style>
-        .black_overlay {
-            display: none;
-            /* 此元素不会被显示*/
-            position: absolute;
-            top: 0%;
-            left: 0%;
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            z-index: 1001;
-            /* z-index 属性设置元素的堆叠顺序。拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面。*/
-            -moz-opacity: 0.8;
-            opacity: .80;
-            /* opacity 属性设置元素的不透明级别。*/
-            filter: alpha(opacity=88);
-            /* 所有浏览器都支持 opacity 属性。   注释：IE8 以及更早的版本支持替代的 filter 属性。例如：filter:Alpha(opacity=50)。*/
-        }
-
-        .white_content {
-            display: none;
-            position: absolute;
-            top: 25%;
-            left: 25%;
-            width: 50%;
-            height: auto;
-            /* width: 600px;
-            height: 315px; */
-            padding-bottom: 45px;
-            padding-top: 20px;
-            padding-left: 30px;
-            padding-right: 20px;
-            border-radius: 5px;
-            background-color: #f3f3f3;
-            z-index: 1002;
-            overflow: auto;
-        }
-
-        .tl-manipulation_bar {
-            position: absolute;
-            z-index: 11;
-            text-align: center;
-            color: #333;
-            overflow: hidden;
-            border-bottom-right-radius: 10px;
-            border-top-right-radius: 10px;
-            top: 100%;
-            left: 50%;
-            left: 0;
-        }
-
-        .tl-text-field {
-            border: 0px;
-            border-radius: 4px;
-            padding: 4px 8px;
-            width: 80%;
-            line-height: 20px;
-            box-sizing: border-box;
-            /* 文字 */
-            /* color: rgb(0, 0, 0); */
-            transition: border-color 120ms 0ms cubic-bezier(0, 0, 0.2, 1), box-shadow 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
-            background-color: #ffffff;
-        }
-
-        /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
-        ::-webkit-scrollbar {
-            width: 8px;
-            border-radius: 5px;
-            height: 16px;
-            background-color: #F5F5F5;
-        }
-
-        /*定义滚动条轨道 内阴影+圆角*/
-        ::-webkit-scrollbar-track {
-            /* -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
-            border-radius: 10px;
-            background-color: #F5F5F5;
-        }
-
-        /*定义滑块 内阴影+圆角*/
-        ::-webkit-scrollbar-thumb {
-            border-radius: 10px;
-            /* -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3); */
-            background-color: rgb(175, 175, 175);
-        }
-
-        .tl-year-field {
-            border: 0px;
-            border-radius: 4px;
-            padding: 4px 8px;
-            width: 56px;
-            line-height: 20px;
-            box-sizing: border-box;
-            /* 文字 */
-            color: rgb(0, 0, 0);
-            transition: border-color 120ms 0ms cubic-bezier(0, 0, 0.2, 1), box-shadow 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
-            background-color: #ffffff;
-        }
-
-        .tl-md-field {
-            border: 0px;
-            border-radius: 4px;
-            padding: 4px 8px;
-            width: 40px;
-            line-height: 20px;
-            box-sizing: border-box;
-            /* 文字 */
-            color: rgb(0, 0, 0);
-            transition: border-color 120ms 0ms cubic-bezier(0, 0, 0.2, 1), box-shadow 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
-            background-color: #ffffff;
-        }
-
-        .tl-block {
-            display: block;
-            height: 12px;
-        }
-
-        .tl-button {
-            position: absolute;
-            right: 0px;
-            width: 80px;
-        }
-
-        .tl-blue-button {
-            cursor: pointer;
-            color: rgb(100 152 255);
-            border-radius: 4px;
-            line-height: 20px;
-            padding: 4px 8px;
-            white-space: nowrap;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-            border: 0;
-            box-sizing: border-box;
-            text-align: center;
-        }
-
-        .tl-blue-button:hover {
-            background-color: #096bda25;
-        }
-
-        .tl-red-button {
-            cursor: pointer;
-            color: rgb(103, 103, 103);
-            border-radius: 4px;
-            line-height: 20px;
-            padding: 4px 8px;
-            white-space: nowrap;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-            border: 0;
-            box-sizing: border-box;
-            text-align: center;
-        }
-
-        .tl-red-button:hover {
-            background-color: #ff000033;
-        }
-    </style>
 </head>
 
 <body>
@@ -179,7 +18,8 @@
                                                          document.getElementById('fade').style.display='block';
                                                          editSlide();">
             <input type="button" value="删除" class="tl-red-button" onclick="deleteSlide()">
-            <input type="button" value="浏览器打开" class="tl-red-button" onclick="window.open(window.location.href+`?blockid=${window.baseid}`)">
+            <input type="button" value="浏览器打开" class="tl-red-button"
+                onclick="window.open(window.location.href+`?blockid=${window.baseid}`)">
 
             </br>
         </p>
@@ -217,8 +57,8 @@
         <div class="tl_button">
             <button onclick="confirmYes()" id="confirm_button_yes" class="tl-blue-button"
                 style="position: absolute;left:85%;font-size: 16px;">确认</button>
-            <button onclick="confirmCancel()" id="confirm_button_cancel" class="tl-blue-button"
-                style="position: absolute;left:75%;color:rgb(102, 102, 102);font-size: 16px;">取消</button>
+            <button onclick="confirmCancel()" id="confirm_button_cancel" class="tl-red-button"
+                style="position: absolute;left:75%;font-size: 16px;">取消</button>
         </div>
     </div>
     <div id="fade" class="black_overlay"></div>
