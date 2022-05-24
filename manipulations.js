@@ -135,6 +135,9 @@ function confirmYes() {
     }
     event_data.text.headline = document.getElementById("slide_title").value;// 标题及描述
     event_data.text.text = document.getElementById("slide_contents").value;
+    // 支持markdown语法链接
+    event_data.text.headline = event_data.text.headline.replace(/\[([^\n\r]+)\]\(([^\n\r\(\)]+)\)/, "<a href='$2'>$1</a>");
+    event_data.text.text = event_data.text.text.replace(/\[([^\n\r]+)\]\(([^\n\r\(\)]+)\)/, "<a href='$2'>$1</a>");
 
     var background_url = document.getElementById("slide_background").value;// 背景图片
     if (background_url.slice(0, 7) == "assets/") {
