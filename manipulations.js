@@ -135,9 +135,12 @@ function confirmYes() {
     }
     event_data.text.headline = document.getElementById("slide_title").value;// 标题及描述
     event_data.text.text = document.getElementById("slide_contents").value;
+
     // 支持markdown语法链接
     event_data.text.headline = event_data.text.headline.replace(/\[([^\n\r]+)\]\(([^\n\r\(\)]+)\)/, "<a href='$2'>$1</a>");
     event_data.text.text = event_data.text.text.replace(/\[([^\n\r]+)\]\(([^\n\r\(\)]+)\)/, "<a href='$2'>$1</a>");
+
+
 
     var background_url = document.getElementById("slide_background").value;// 背景图片
     if (background_url.slice(0, 7) == "assets/") {
@@ -280,4 +283,31 @@ function editSlide() {
         document.getElementById("slide_background").value = slide_data.background.url;
     }
 
+}
+
+function jumpToBlock() {
+    // 获取正文中的超链接
+    var tl_text = timeline.getCurrentSlide().data.text.text.replace(/.+(siyuan:\/\/blocks\/.+)/, "$1").slice(0,38);
+    // 正则限制长度不起作用？
+    // console.log(tl_text)
+
+    var blockid = tl_text.replace(/^siyuan:\/\/blocks\/(.{22})$/, "$1");
+
+    $.ajax({
+        type: "POST",
+        url: "/api/filetree/getHPathByID",
+        data: JSON.stringify({
+            "id": blockid
+        }),
+        success(res) {
+            // console.log(res)
+            if (res.code != 0) {
+                // 验证块是否存在
+                console.log("块不存在")
+                return;
+            } else { // 存在则跳转
+                window.location.href = tl_text;
+            }
+        }
+    })
 }
