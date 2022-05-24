@@ -68,6 +68,8 @@ $.ajax({
         } else {
             //若有已保存的数据，读取数据
             var dataobj = res.data["custom-dataobject"].replaceAll("&quot;", "\"");
+            var dataobj = dataobj.replaceAll("&lt;", "\<");
+            var dataobj = dataobj.replaceAll("&gt;", "\>");
             dataobject = JSON.parse(dataobj);
 
             var dataevents = dataobject.events;
