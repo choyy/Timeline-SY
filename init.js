@@ -12,7 +12,7 @@ var options = {
 
 // 随思源主题自动切换主题
 // https://ld246.com/article/1653294035002/comment/1653327149164?r=bgt#comments
-if (window.top.siyuan.config.appearance.mode === 1) {
+if (window.top.siyuan&&window.top.siyuan.config.appearance.mode === 1) {
     var obj = document.getElementById("timelinetheme");
     obj.setAttribute("href", "timeline3/css/themes/timeline.theme.dark.css");
     options.default_bg_color = "#000000";
