@@ -309,6 +309,11 @@ function editSlide() {
   }
   document.getElementById("slide_title").value = slide_data.text.headline;
   document.getElementById("slide_contents").value = slide_data.text.text;
+
+    // html <a></a>链接转换为markdown语法链接
+    document.getElementById("slide_title").value = document.getElementById("slide_title").value.replace(/<a.*? href="([^\n\r]+?)".*?>(.+)<\/a>/, "[$2]($1)");
+    document.getElementById("slide_contents").value = document.getElementById("slide_contents").value.replace(/<a.*? href="([^\n\r]+?)".*?>(.+)<\/a>/, "[$2]($1)");
+
   if (slide_data.background != null) {
     // 若background不为null填入url
     document.getElementById("slide_background").value =
