@@ -153,6 +153,9 @@ function confirmYes() {
         "<a href='$2'>$1</a>"
     );
 
+    // 支持换行
+    event_data.text.text = event_data.text.text.replaceAll("\n","<br>");
+
     var background_url = document.getElementById("slide_background").value; // 背景图片
     if (background_url.slice(0, 7) == "assets/") {
         background_url = "/" + background_url;
@@ -313,6 +316,9 @@ function editSlide() {
     // html <a></a>链接转换为markdown语法链接
     document.getElementById("slide_title").value = document.getElementById("slide_title").value.replace(/<a.*? href="([^\n\r]+?)".*?>(.+)<\/a>/, "[$2]($1)");
     document.getElementById("slide_contents").value = document.getElementById("slide_contents").value.replace(/<a.*? href="([^\n\r]+?)".*?>(.+)<\/a>/, "[$2]($1)");
+
+    // html 换行<br>转换为\n
+    document.getElementById("slide_contents").value = document.getElementById("slide_contents").value.replaceAll("<br>","\n");
 
     if (slide_data.background != null) {
         // 若background不为null填入url
