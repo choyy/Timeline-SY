@@ -154,7 +154,7 @@ function confirmYes() {
     );
 
     // 支持换行
-    event_data.text.text = event_data.text.text.replaceAll("\n","<br>");
+    event_data.text.text = event_data.text.text.replaceAll("\n", "<br>");
 
     var background_url = document.getElementById("slide_background").value; // 背景图片
     if (background_url.slice(0, 7) == "assets/") {
@@ -254,7 +254,13 @@ function deleteSlide() {
     } else {
         var delete_confirm = confirm("确定删除该项吗？");
         if (delete_confirm) {
+            // 获得幻灯片序号，删除后跳到下一个幻灯片
+            let slide_index = timeline._getSlideIndex(timeline.current_id);
+            if (slide_index >= timeline.config.events.length) {
+                slide_index -= 1;
+            }
             timeline.removeId(timeline.current_id);
+            timeline.goTo(slide_index);
         }
         var dataobject = {
             title: {
@@ -318,7 +324,7 @@ function editSlide() {
     document.getElementById("slide_contents").value = document.getElementById("slide_contents").value.replace(/<a.*? href="([^\n\r]+?)".*?>(.+)<\/a>/, "[$2]($1)");
 
     // html 换行<br>转换为\n
-    document.getElementById("slide_contents").value = document.getElementById("slide_contents").value.replaceAll("<br>","\n");
+    document.getElementById("slide_contents").value = document.getElementById("slide_contents").value.replaceAll("<br>", "\n");
 
     if (slide_data.background != null) {
         // 若background不为null填入url
