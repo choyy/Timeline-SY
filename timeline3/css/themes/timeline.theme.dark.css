@@ -190,8 +190,8 @@
 }
 
 .tl-blue-button:hover {
-  color: rgb(157, 190, 255);
-  background-color: #7bb9ff76;
+  color: rgb(172, 198, 250);
+  background-color: #3e5876;
 }
 
 .tl-red-button {
@@ -212,8 +212,8 @@
 }
 
 .tl-red-button:hover {
-  color: rgb(192, 192, 192);
-  background-color: #ff7c7c88;
+  color: rgb(251, 210, 210);
+  background-color: #6e4646;
 }
 
 /* bgt modify */

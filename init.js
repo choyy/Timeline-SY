@@ -22,9 +22,7 @@ var id = ''
 
 if (window.frameElement) {
     id = window.frameElement.parentElement.parentElement.dataset.nodeId;
-}
-
-else {
+}else {
     const search = location.search
     const obj = new URLSearchParams(search);
     id = obj.get('blockid')
