@@ -12,7 +12,7 @@ var options = {
 
 // 随思源主题自动切换主题
 // https://ld246.com/article/1653294035002/comment/1653327149164?r=bgt#comments
-if (window.top.siyuan&&window.top.siyuan.config.appearance.mode === 1) {
+if (window.top.siyuan && window.top.siyuan.config.appearance.mode === 1) {
     var obj = document.getElementById("timelinetheme");
     obj.setAttribute("href", "timeline3/css/themes/timeline.theme.dark.css");
     options.default_bg_color = "#000000";
@@ -22,7 +22,7 @@ var id = ''
 
 if (window.frameElement) {
     id = window.frameElement.parentElement.parentElement.dataset.nodeId;
-}else {
+} else {
     const search = location.search
     const obj = new URLSearchParams(search);
     id = obj.get('blockid')
@@ -91,3 +91,44 @@ $.ajax({
         timeline = new TL.Timeline('Timeline', dataobject, options);
     }
 })
+
+// 鼠标滚轮切换幻灯片
+setTimeout(function () {
+    if (document.getElementsByClassName("tl-timenav-slider-background")[0] != undefined) {
+        var box = document.getElementsByClassName("tl-timenav-slider-background")[0]
+        function onMouseWheel(ev) {
+            var ev = ev || window.event;
+            var down = true;
+            down = ev.wheelDelta ? ev.wheelDelta < 0 : ev.detail > 0;
+            var slide_index = timeline._getSlideIndex(timeline.current_id);
+            var slide_num = timeline._timenav._markers.length;
+            if (down) {
+                if (slide_index != slide_num) {
+                    timeline.goToNext();
+                } else {
+                    console.log("已到达最后一页");
+                }
+            } else {
+                if (slide_index != 0) {
+                    timeline.goToPrev();
+                } else {
+                    console.log("已到达第一页");
+                }
+            }
+            if (ev.preventDefault) {
+                // 阻止默认事件
+                ev.preventDefault();
+            }
+            return false;
+        }
+        addEvent(box, 'mousewheel', onMouseWheel);
+        addEvent(box, 'DOMMouseScroll', onMouseWheel);
+        function addEvent(obj, xEvent, fn) {
+            if (obj.attachEvent) {
+                obj.attachEvent('on' + xEvent, fn);
+            } else {
+                obj.addEventListener(xEvent, fn, false);
+            }
+        }
+    }
+}, 1000)
