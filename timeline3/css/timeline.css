@@ -45,7 +45,7 @@
 /*	Reset
 ------------------------------------------------------------------------------------------- */
 
-/* bgt modify */
+/* ---------------bgt modify--------------- */
 
 .black_overlay {
   display: none;
@@ -210,8 +210,29 @@
   color: rgb(113, 0, 0);
   background-color: #fdbdbd;
 }
+/* 使上一个下一个处文字更清晰 */
+.tl-slidenav-previous .tl-slidenav-title,
+.tl-slidenav-next .tl-slidenav-title,
+.tl-slidenav-previous .tl-slidenav-description,
+.tl-slidenav-next .tl-slidenav-description {
+  opacity: 0.6 !important;
+}
 
-/* bgt modify */
+.tl-slidenav-previous:hover .tl-slidenav-title,
+.tl-slidenav-next:hover .tl-slidenav-title {
+  opacity: 1 !important;
+}
+
+.tl-slidenav-previous .tl-slidenav-content-container.tl-slidenav-inverted .tl-slidenav-icon,
+.tl-slidenav-next .tl-slidenav-content-container.tl-slidenav-inverted .tl-slidenav-icon,
+.tl-slidenav-previous .tl-slidenav-content-container.tl-slidenav-inverted .tl-slidenav-title,
+.tl-slidenav-next .tl-slidenav-content-container.tl-slidenav-inverted .tl-slidenav-title,
+.tl-slidenav-previous .tl-slidenav-content-container.tl-slidenav-inverted .tl-slidenav-description,
+.tl-slidenav-next .tl-slidenav-content-container.tl-slidenav-inverted .tl-slidenav-description {
+  text-shadow: none !important;
+}
+/* ---------------bgt modify--------------- */
+
 
 .tl-storyjs {
   /*	Reset tags and common classes
