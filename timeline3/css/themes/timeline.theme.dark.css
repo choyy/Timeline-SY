@@ -215,6 +215,50 @@
   color: rgb(251, 210, 210);
   background-color: #6e4646;
 }
+/* 二级菜单样式 */
+li {
+  /*list-style设定为none可以去除列表前的小圆点*/
+  list-style: none;
+}
+
+.list-father {
+  display: inline-block;
+  position: relative;
+  padding-top: 10px;
+  padding-bottom: 18px;
+  padding-left: 10px;
+  padding-right: 10px;
+  top: -4px;
+  line-height: 0;
+  background-color: #363636;
+  color: rgb(134, 173, 251);
+  border-radius: 5px;
+}
+
+.list-father:hover {
+  color: rgb(172, 198, 250);
+  background-color: #3e5876;
+}
+
+.list-father:hover .list-son {
+  display: block;
+}
+
+.list-son {
+  position: absolute;
+  display: none;
+  background-color: #ffffff00;
+  top: 10px;
+  left: -56px;
+  right: 0px;
+  padding-left: 0px;
+  padding-top: 10px;
+}
+
+.list-son>li {
+  padding: 5px;
+}
+
 /* 使上一个下一个处文字更清晰 */
 .tl-slidenav-previous .tl-slidenav-title,
 .tl-slidenav-next .tl-slidenav-title,

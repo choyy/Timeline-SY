@@ -337,6 +337,42 @@ function editSlide() {
     }
 }
 
+function timelineReload() {
+    $.ajax({
+        type: "POST",
+        url: "/api/attr/getBlockAttrs",
+        data: JSON.stringify({
+            "id": id
+        }),
+        success(res) {
+            //若有已保存的数据，读取数据
+            var dataobj = res.data["custom-dataobject"].replaceAll("&quot;", "\"");
+            var dataobj = dataobj.replaceAll("&lt;", "\<");
+            var dataobj = dataobj.replaceAll("&gt;", "\>");
+            dataobject = JSON.parse(dataobj);
+
+            var dataevents = dataobject.events;
+            var tmp;
+            for (i = 0, len = dataevents.length; i < len; i++) {
+                tmp = dataevents[i].start_date.data;
+                delete dataevents[i].start_date.data;
+                // delete tmp.date_obj;    // 删不删没区别
+                // delete tmp.format;
+                // delete tmp.format_short;
+                dataevents[i].start_date = tmp;
+
+                if (dataevents[i].end_date != undefined) {
+                    tmp = dataevents[i].end_date.data;
+                    delete dataevents[i].end_date.data;
+                    dataevents[i].end_date = tmp;
+                }
+            }
+            dataobject.events = dataevents;
+            timeline = new TL.Timeline('Timeline', dataobject, options);
+        }
+    })
+    setTimeout(setWheelEvent, 1000)
+}
 // function jumpToBlock() {
 //     // 获取正文中的超链接
 //     var tl_text = timeline

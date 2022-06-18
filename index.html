@@ -1,30 +1,29 @@
 <head>
-    <link title="timeline-styles" rel="stylesheet" id="timelinetheme" href="timeline3/css/timeline.css">
-    <script>
-    </script>
     <script src="timeline3/js/timeline.js"></script>
     <script src="manipulations.js"></script>
 </head>
 
 <body>
+    <link rel="stylesheet" id="timelinetheme" href="timeline3/css/timeline.css">
     <div id="Timeline">
         <script src="init.js"></script>
     </div>
-    <div style="top: 190px;right: 30px;position: absolute;z-index: 999;">
-        <p>
-            <!-- 已不再需要跳转到块按钮
+    <div id="button-element" style="top: 200px;right: 30px;position: absolute;z-index: 999;">
+        <!-- 已不再需要跳转到块按钮
             <input type="button" value="跳转到块" class="tl-blue-button" onclick="jumpToBlock()"> -->
-            <input type="button" value="新建" class="tl-blue-button" onclick="document.getElementById('light').style.display='block';
+        <input type="button" value="新建" class="tl-blue-button" onclick="document.getElementById('light').style.display='block';
                                                         document.getElementById('fade').style.display='block'">
-            <input type="button" value="编辑" class="tl-blue-button" onclick="document.getElementById('light').style.display='block';
+        <input type="button" value="编辑" class="tl-blue-button" onclick="document.getElementById('light').style.display='block';
                                                          document.getElementById('fade').style.display='block';
                                                          editSlide();">
-            <input type="button" value="删除" class="tl-red-button" onclick="deleteSlide()">
-            <input type="button" value="浏览器打开" class="tl-red-button"
-                onclick="window.open(window.location.href+`?blockid=${window.baseid}`)">
-
-            </br>
-        </p>
+        <input type="button" value="删除" class="tl-red-button" onclick="deleteSlide()">
+        <li class="list-father">...
+            <ul class="list-son">
+                <li><input type="button" value="浏览器打开" class="tl-red-button"
+                        onclick="window.open(window.location.href+`?blockid=${window.baseid}`)"></li>
+                <li><input type="button" value="刷新时间线" class="tl-red-button" onclick="timelineReload()"></li>
+            </ul>
+        </li>
     </div>
     <div id="light" class="white_content">
         <div id="date_area">
