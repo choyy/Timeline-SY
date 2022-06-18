@@ -93,7 +93,7 @@ $.ajax({
 })
 
 // 鼠标滚轮切换幻灯片
-setTimeout(function () {
+function setWheelEvent() {
     if (document.getElementsByClassName("tl-timenav-slider-background")[0] != undefined) {
         var box = document.getElementsByClassName("tl-timenav-slider-background")[0]
         function onMouseWheel(ev) {
@@ -131,4 +131,5 @@ setTimeout(function () {
             }
         }
     }
-}, 1000)
+}
+setTimeout(setWheelEvent, 1000)
