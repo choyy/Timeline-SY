@@ -51,46 +51,51 @@ var dataobject = {
     ],
 }
 
-$.ajax({
-    type: "POST",
-    url: "/api/attr/getBlockAttrs",
-    data: JSON.stringify({
-        "id": id
-    }),
-    success(res) {
-        if (res.data["custom-dataobject"] == undefined) {
-            var init_date = new Date();
-            dataobject.events[0].start_date.year = init_date.getFullYear();
-            dataobject.events[0].start_date.month = init_date.getMonth() + 1;
-            dataobject.events[0].start_date.day = init_date.getDate();
-        } else {
-            //若有已保存的数据，读取数据
-            var dataobj = res.data["custom-dataobject"].replaceAll("&quot;", "\"");
-            var dataobj = dataobj.replaceAll("&lt;", "\<");
-            var dataobj = dataobj.replaceAll("&gt;", "\>");
-            dataobject = JSON.parse(dataobj);
+function createTlFromData() {
+    $.ajax({
+        type: "POST",
+        url: "/api/attr/getBlockAttrs",
+        data: JSON.stringify({
+            "id": id
+        }),
+        success(res) {
+            if (res.data["custom-dataobject"] == undefined) {
+                var init_date = new Date();
+                dataobject.events[0].start_date.year = init_date.getFullYear();
+                dataobject.events[0].start_date.month = init_date.getMonth() + 1;
+                dataobject.events[0].start_date.day = init_date.getDate();
+            } else {
+                //若有已保存的数据，读取数据
+                var dataobj = res.data["custom-dataobject"].replaceAll("&quot;", "\"");
+                dataobj = dataobj.replaceAll("&lt;", "\<");
+                dataobj = dataobj.replaceAll("&gt;", "\>");
+                dataobject = JSON.parse(dataobj);
 
-            var dataevents = dataobject.events;
-            var tmp;
-            for (i = 0, len = dataevents.length; i < len; i++) {
-                tmp = dataevents[i].start_date.data;
-                delete dataevents[i].start_date.data;
-                // delete tmp.date_obj;    // 删不删没区别
-                // delete tmp.format;
-                // delete tmp.format_short;
-                dataevents[i].start_date = tmp;
+                var dataevents = dataobject.events;
+                if (dataevents[0].start_date.data != undefined) {
+                    var tmp;
+                    for (i = 0, len = dataevents.length; i < len; i++) {
+                        tmp = dataevents[i].start_date.data;
+                        delete dataevents[i].start_date.data;
+                        // delete tmp.date_obj;    // 删不删没区别
+                        // delete tmp.format;
+                        // delete tmp.format_short;
+                        dataevents[i].start_date = tmp;
 
-                if (dataevents[i].end_date != undefined) {
-                    tmp = dataevents[i].end_date.data;
-                    delete dataevents[i].end_date.data;
-                    dataevents[i].end_date = tmp;
+                        if (dataevents[i].end_date != undefined) {
+                            tmp = dataevents[i].end_date.data;
+                            delete dataevents[i].end_date.data;
+                            dataevents[i].end_date = tmp;
+                        }
+                    }
+                    dataobject.events = dataevents;
                 }
             }
-            dataobject.events = dataevents;
+            timeline = new TL.Timeline('Timeline', dataobject, options);
         }
-        timeline = new TL.Timeline('Timeline', dataobject, options);
-    }
-})
+    })
+}
+createTlFromData();
 
 // 鼠标滚轮切换幻灯片
 function setWheelEvent() {
