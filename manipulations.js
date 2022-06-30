@@ -341,36 +341,6 @@ function timelineReload() {
     createTlFromData();
     setTimeout(setWheelEvent, 1000)
 }
-// function jumpToBlock() {
-//     // 获取正文中的超链接
-//     var tl_text = timeline
-//         .getCurrentSlide()
-//         .data.text.text.replace(/.+(siyuan:\/\/blocks\/.+)/, "$1")
-//         .slice(0, 38);
-//     // 正则限制长度不起作用？
-//     // console.log(tl_text)
-
-//     var blockid = tl_text.replace(/^siyuan:\/\/blocks\/(.{22})$/, "$1");
-
-//     $.ajax({
-//         type: "POST",
-//         url: "/api/filetree/getHPathByID",
-//         data: JSON.stringify({
-//             id: blockid,
-//         }),
-//         success(res) {
-//             // console.log(res)
-//             if (res.code != 0) {
-//                 // 验证块是否存在
-//                 console.log("块不存在");
-//                 return;
-//             } else {
-//                 // 存在则跳转
-//                 window.location.href = tl_text;
-//             }
-//         },
-//     });
-// }
 function modifyEditor() {
     let iframes = document.querySelectorAll("iframe[data-id]");
     console.log(iframes);
