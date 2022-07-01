@@ -9,14 +9,15 @@
         <script src="init.js"></script>
     </div>
     <div id="button-element" style="top: 200px;right: 30px;position: absolute;z-index: 999;">
-        <input type="button" value="新建" class="tl-blue-button" onclick="document.getElementById('light').style.display='block';
-                                                        document.getElementById('fade').style.display='block'">
-        <input type="button" value="编辑" class="tl-blue-button" onclick="document.getElementById('light').style.display='block';
-                                                         document.getElementById('fade').style.display='block';
-                                                         editSlide();">
+        <input type="button" value="新建" class="tl-blue-button"
+            onclick="document.getElementById('light').style.display='block';">
+        <input type="button" value="编辑" class="tl-blue-button"
+            onclick="document.getElementById('light').style.display='block';editSlide();">
         <input type="button" value="删除" class="tl-red-button" onclick="deleteSlide()">
         <li class="list-father">...
             <ul class="list-son">
+                <li><input type="button" value="纪元" class="tl-blue-button" onclick="eraPanelShow()"
+                        style="margin-left: 40px;"></li>
                 <li><input type="button" value="浏览器打开" class="tl-red-button"
                         onclick="window.open(window.location.href+`?blockid=${window.baseid}`)"></li>
                 <li><input type="button" value="刷新时间线" class="tl-red-button" onclick="timelineReload()"></li>
@@ -26,14 +27,14 @@
     <div id="light" class="white_content">
         <div id="date_area">
             开始日期：
-            <input type="number" name="" id="start_year" value="" class="tl-date-field" style="width: 65px;" />年
+            <input type="number" name="" id="start_year" value="" class="tl-year-field" />年
             <input type="number" name="" id="start_month" value="" min="1" max="12" class="tl-md-field"
                 style="width: 50px;" />月
             <input type="number" name="" id="start_day" value="" min="1" max="31" class="tl-md-field"
                 style="width: 50px;" />日</br>
             <div class="tl-block"></div>
             结束日期：
-            <input type="number" name="" id="end_year" value="" class="tl-date-field" style="width: 65px;" />年
+            <input type="number" name="" id="end_year" value="" class="tl-year-field" />年
             <input type="number" name="" id="end_month" value="" min="1" max="12" class="tl-md-field"
                 style="width: 50px;" />月
             <input type="number" name="" id="end_day" value="" min="1" max="31" class="tl-md-field"
@@ -50,21 +51,42 @@
             <textarea name="" id="slide_contents" rows="5" class="tl-text-field"></textarea></br>
         </div>
         <div class="tl-block"></div>
-        背景图片：<input type="text" name="" id="slide_background" class="tl-text-field" /></br>
+        背景图片：<input type="text" name="" id="slide_background" class="tl-text-field" style="margin-left: 3px;" /></br>
         <div class="tl-block"></div>
-        思源块 id：<input type="text" name="" id="slide_blockid" class="tl-text-field" /></br>
+        思源块 id：<input type="text" name="" id="slide_blockid" class="tl-text-field" style="margin-left: 3px;" /></br>
 
         <div class="tl-block"></div>
         <div class="tl-block"></div>
         <!-- 确认、取消按钮 -->
-        <div class="tl_button">
-            <button onclick="confirmYes()" id="confirm_button_yes" class="tl-blue-button"
-                style="position: absolute;left:85%;font-size: 16px;">确认</button>
+        <div class="tl_button" style="text-align: right;">
             <button onclick="confirmCancel()" id="confirm_button_cancel" class="tl-red-button"
-                style="position: absolute;left:75%;font-size: 16px;">取消</button>
+                style="margin-right: 30px; font-size: 16px;">取消</button>
+            <button onclick="confirmYes()" id="confirm_button_yes" class="tl-blue-button"
+                style="font-size: 16px;">确认</button>
         </div>
     </div>
-    <div id="fade" class="black_overlay"></div>
+    <div id="tl_era_panel" class="tl_era_panel">
+        <div id="vote">
+            <div id="era-item">
+                <input type="number" class="tl-year-field" id="start_date" name="era_start_date" />
+                年 ～
+                <input type="number" class="tl-year-field" id="end_date" name="era_end_date" />
+                年：
+                <input type="text" class="tl-era-title-field" placeholder="纪元名称" name="era_title" />
+                <button id="del-era-item">-</button>
+                <div class="tl-block"></div>
+            </div>
+            <div id="position-sign"></div>
+        </div>
+        <button id="button" class="tl-blue-button" onclick="eraInputAdd()" style="margin-top: -2px;">添加</button>
+
+        <div class="tl_button" style="text-align: right;">
+            <button onclick="eraConfirmCancel()" id="confirm_button_cancel" class="tl-red-button"
+                style="margin-right: 30px;font-size: 16px;">取消</button>
+            <button onclick="eraConfirmYes()" id="confirm_button_yes" class="tl-blue-button"
+                style="font-size: 16px;">确认</button>
+        </div>
+    </div>
     <script>
         // 开始日期填入默认值
         var init_date = new Date();

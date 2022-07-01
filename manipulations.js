@@ -50,42 +50,20 @@ function confirmYes() {
             };
             title_text.headline = document.getElementById("slide_title").value;
             title_text.text = document.getElementById("slide_contents").value;
-            var dataobject = {
-                title: {
-                    text: {
-                        headline: "时间线",
-                        text: "",
-                    },
-                },
-                events: [
-                    {
-                        start_date: {
-                            year: "",
-                            month: "",
-                            day: "",
-                        },
-                        end_date: {
-                            year: "",
-                            month: "",
-                            day: "",
-                        },
-                        text: {
-                            headline: "创建了时间线",
-                            text: "",
-                        },
-                        unique_id: "create_timeline",
-                    },
-                ],
+            dataobject = {
+                title: {},
+                events: [],
+                eras: [],
             };
             dataobject.title = timeline.config.title;
             dataobject.events = timeline.config.events;
+            dataobject.eras = timeline.config.eras;
             dataobject.title.text = title_text;
             timeline = new TL.Timeline("Timeline", dataobject, options);
             saveData(dataobject);
             is_edit = false;
             // 关闭输入窗
             document.getElementById("light").style.display = "none";
-            document.getElementById("fade").style.display = "none";
             clearIuputbox();
             return;
         }
@@ -198,39 +176,17 @@ function confirmYes() {
     timeline.goToId(event_data.unique_id);
 
     // 保存数据
-    var dataobject = {
-        title: {
-            text: {
-                headline: "时间线",
-                text: "",
-            },
-        },
-        events: [
-            {
-                start_date: {
-                    year: "",
-                    month: "",
-                    day: "",
-                },
-                end_date: {
-                    year: "",
-                    month: "",
-                    day: "",
-                },
-                text: {
-                    headline: "创建了时间线",
-                    text: "",
-                },
-                unique_id: "create_timeline",
-            },
-        ],
+    dataobject = {
+        title: {},
+        events: [],
+        eras: [],
     };
     dataobject.title = timeline.config.title;
     dataobject.events = timeline.config.events;
+    dataobject.eras = timeline.config.eras;
     saveData(dataobject);
     // 关闭输入窗
     document.getElementById("light").style.display = "none";
-    document.getElementById("fade").style.display = "none";
 
     clearIuputbox();
 }
@@ -238,7 +194,6 @@ function confirmYes() {
 // 编辑框取消
 function confirmCancel() {
     document.getElementById("light").style.display = "none";
-    document.getElementById("fade").style.display = "none";
     // 若为编辑状态清除输入框内容
     if (typeof is_edit != "undefined" && is_edit) {
         clearIuputbox();
@@ -262,35 +217,14 @@ function deleteSlide() {
             timeline.removeId(timeline.current_id);
             timeline.goTo(slide_index);
         }
-        var dataobject = {
-            title: {
-                text: {
-                    headline: "时间线",
-                    text: "",
-                },
-            },
-            events: [
-                {
-                    start_date: {
-                        year: "",
-                        month: "",
-                        day: "",
-                    },
-                    end_date: {
-                        year: "",
-                        month: "",
-                        day: "",
-                    },
-                    text: {
-                        headline: "创建了时间线",
-                        text: "",
-                    },
-                    unique_id: "create_timeline",
-                },
-            ],
+        dataobject = {
+            title: {},
+            events: [],
+            eras: [],
         };
         dataobject.title = timeline.config.title;
         dataobject.events = timeline.config.events;
+        dataobject.eras = timeline.config.eras;
         saveData(dataobject);
     }
 }
@@ -341,9 +275,117 @@ function timelineReload() {
     createTlFromData();
     setTimeout(setWheelEvent, 1000)
 }
+
+// 添加纪元项
+function eraInputAdd(era_obj) {
+    let vote = document.getElementById("vote");
+    let position_sign = document.getElementById("position-sign");
+    let input = document.createElement("input");
+    let tl_block = document.createElement("div")
+    let year1 = document.createTextNode(" 年 ～ ");
+    let year2 = document.createTextNode(" 年： ");
+    let title = document.createElement("input");
+    let era_item = document.createElement("div");
+    let del_button = document.createElement("input");
+
+    era_item.id = "era-item";
+
+    input.type = "number";
+    input.className = "tl-year-field";
+    input.name = "era_start_date";
+
+    title.type = "text";
+    title.className = "tl-era-title-field";
+    title.name = "era_title";
+    title.placeholder = "纪元名称";
+
+    // 删除纪元项的按钮
+    del_button.type = "button";
+    del_button.value = "—";
+    del_button.className = "tl-red-button";
+    del_button.style = "margin-left:3px;"
+    del_button.onclick = function () {
+        this.parentNode.remove(this.parentNode)
+    };
+
+    tl_block.className = "tl-block";
+
+    era_item.appendChild(input);
+    era_item.appendChild(year1);
+
+    input = input.cloneNode(false);
+    input.name = "era_end_date";
+    era_item.appendChild(input);
+    era_item.appendChild(year2);
+    era_item.appendChild(title);
+    if (era_obj != null) {
+        // era_obj 为填入输入框的内容
+        era_item.children[0].value = era_obj.start_date.data.year;
+        era_item.children[1].value = era_obj.end_date.data.year;
+        era_item.children[2].value = era_obj.headline;
+    }
+    era_item.appendChild(del_button);
+    era_item.appendChild(tl_block);
+    vote.insertBefore(era_item, position_sign);
+}
+
+function eraPanelShow() {
+    var vote = document.getElementById("vote");
+    // 删除子节点
+    var v_len = vote.children.length;
+    for (let i = 0; i < v_len - 1; i++) {
+        vote.removeChild(vote.children[0]);
+    }
+
+    // 添加已有纪元节点
+    var tl_eras = timeline.config.eras;
+    for (let i = 0; i < tl_eras.length; i++) {
+        eraInputAdd(tl_eras[i]);
+    }
+
+    document.getElementById('tl_era_panel').style.display = 'block';
+}
+
+function eraConfirmYes() {
+    // 输入框内容
+    var era_start_date = document.getElementsByName("era_start_date");
+    var era_end_date = document.getElementsByName("era_end_date");
+    var era_title = document.getElementsByName("era_title")
+    var era_list = [];
+    for (let i = 0; i < era_title.length; i++) {
+        var era_obj = {
+            start_date: {
+                year: "",
+            },
+            end_date: {
+                year: "",
+            },
+            text: {
+                headline: ""
+            },
+        };
+        if (era_start_date[i].value == "" || era_end_date[i].value == "" || era_title[i].value == "") {
+            alert("不可有日期或名称为空！")
+            return;
+        }
+        era_obj.start_date.year = era_start_date[i].value;
+        era_obj.end_date.year = era_end_date[i].value;
+        era_obj.text.headline = era_title[i].value;
+        era_list.push(era_obj);
+    }
+    dataobject["eras"] = era_list;
+    saveData(dataobject);
+    timeline = new TL.Timeline("Timeline", dataobject, options);
+    document.getElementById("tl_era_panel").style.display = "none";
+}
+
+function eraConfirmCancel() {
+    document.getElementById("tl_era_panel").style.display = "none";
+}
+
 function modifyEditor() {
     let iframes = document.querySelectorAll("iframe[data-id]");
-    console.log(iframes);
+    // console.log(iframes);
 
     if (iframes[0]) {
         iframes.forEach((syIframe) => {

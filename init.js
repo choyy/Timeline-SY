@@ -2,8 +2,8 @@ var options = {
     width: '100%',
     height: '100%',
     timenav_position: 'top',
-    language: '/widgets/timeline-sy/timeline3/js/locale/zh-cn.json',
-    font: '/widgets/timeline-sy/font.default.modified.css',
+    language: 'timeline3/js/locale/zh-cn.json',
+    font: 'font.default.modified.css',
     default_bg_color: 'white',
     start_at_end: false,
     start_at_slide: 0,
@@ -72,9 +72,26 @@ function createTlFromData() {
                 dataobject = JSON.parse(dataobj);
 
                 var dataevents = dataobject.events;
+                var dataeras = dataobject.eras;
+                if (dataeras != undefined && dataeras[0] != undefined && dataeras[0].start_date.data != undefined) {
+                    var tmp;
+                    for (var i = 0, len = dataeras.length; i < len; i++) {
+                        tmp = dataeras[i].start_date.data;
+                        delete dataeras[i].start_date.data;
+                        dataeras[i].start_date = tmp;
+
+                        tmp = dataeras[i].end_date.data;
+                        delete dataeras[i].end_date.data;
+                        dataeras[i].end_date = tmp;
+
+                        tmp = { headline: dataeras[i].headline };
+                        dataeras[i]["text"] = tmp;
+                    }
+                    dataobject.eras = dataeras;
+                }
                 if (dataevents[0].start_date.data != undefined) {
                     var tmp;
-                    for (i = 0, len = dataevents.length; i < len; i++) {
+                    for (var i = 0, len = dataevents.length; i < len; i++) {
                         tmp = dataevents[i].start_date.data;
                         delete dataevents[i].start_date.data;
                         // delete tmp.date_obj;    // 删不删没区别
