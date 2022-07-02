@@ -64,6 +64,7 @@ function confirmYes() {
             is_edit = false;
             // 关闭输入窗
             document.getElementById("light").style.display = "none";
+            document.getElementById("fade").style.display = "none";
             clearIuputbox();
             return;
         }
@@ -187,6 +188,7 @@ function confirmYes() {
     saveData(dataobject);
     // 关闭输入窗
     document.getElementById("light").style.display = "none";
+    document.getElementById("fade").style.display = "none";
 
     clearIuputbox();
 }
@@ -194,6 +196,7 @@ function confirmYes() {
 // 编辑框取消
 function confirmCancel() {
     document.getElementById("light").style.display = "none";
+    document.getElementById("fade").style.display = "none";
     // 若为编辑状态清除输入框内容
     if (typeof is_edit != "undefined" && is_edit) {
         clearIuputbox();
@@ -269,6 +272,8 @@ function editSlide() {
         // 若background不为null填入url
         document.getElementById("slide_blockid").value = slide_data.media.blockid;
     }
+    document.getElementById('light').style.display = 'block';
+    document.getElementById('fade').style.display = 'block';
 }
 
 function timelineReload() {
@@ -344,6 +349,7 @@ function eraPanelShow() {
     }
 
     document.getElementById('tl_era_panel').style.display = 'block';
+    document.getElementById('fade').style.display = 'block';
 }
 
 function eraConfirmYes() {
@@ -377,10 +383,12 @@ function eraConfirmYes() {
     saveData(dataobject);
     timeline = new TL.Timeline("Timeline", dataobject, options);
     document.getElementById("tl_era_panel").style.display = "none";
+    document.getElementById("fade").style.display = "none";
 }
 
 function eraConfirmCancel() {
     document.getElementById("tl_era_panel").style.display = "none";
+    document.getElementById("fade").style.display = "none";
 }
 
 function modifyEditor() {
