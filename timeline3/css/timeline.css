@@ -68,7 +68,7 @@
 .white_content {
   display: none;
   position: absolute;
-  top: 20%;
+  top: 15%;
   left: 20%;
   width: 60%;
   height: auto;
@@ -160,7 +160,7 @@
   width: 8px;
   border-radius: 5px;
   height: 7px;
-  background-color: #F5F5F5;
+  background-color: #f3f3f3;
 }
 
 /*定义滚动条轨道 内阴影+圆角*/
