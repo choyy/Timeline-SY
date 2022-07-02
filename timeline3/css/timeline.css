@@ -139,7 +139,7 @@
 }
 
 .tl-era-title-field {
-  border: 0px;
+  border: 2px solid rgba(255, 255, 255, 0);
   border-radius: 4px;
   padding: 4px 8px;
   width: calc(100% - 277px);
@@ -148,6 +148,11 @@
   box-sizing: border-box;
   transition: border-color 120ms 0ms cubic-bezier(0, 0, 0.2, 1), box-shadow 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
   background-color: #ffffff;
+  outline: none;
+}
+
+.tl-era-title-field:focus {
+  border-color: rgb(134, 173, 251);
 }
 
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
