@@ -3,7 +3,7 @@ var options = {
     height: '100%',
     timenav_position: 'top',
     language: 'timeline3/js/locale/zh-cn.json',
-    font: 'font.default.modified.css',
+    font: 'timeline3/css/fonts/font.default.css',
     default_bg_color: 'white',
     start_at_end: false,
     start_at_slide: 0,
