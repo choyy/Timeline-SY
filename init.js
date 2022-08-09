@@ -59,6 +59,14 @@ function createTlFromData() {
             "id": id
         }),
         success(res) {
+            // 时间线设置项
+            if (res.data["custom-dataoptions"] != undefined) {
+                let dataoptions_obj = res.data["custom-dataoptions"].replaceAll("&quot;", "\"");
+                let data_options = JSON.parse(dataoptions_obj);
+                options['timenav_height_percentage'] = data_options.timenav_height_percentage; 
+                options.start_at_end = data_options.start_at_end;
+                options.timenav_position = data_options.timenav_position;
+            }
             if (res.data["custom-dataobject"] == undefined) {
                 var init_date = new Date();
                 dataobject.events[0].start_date.year = init_date.getFullYear();
@@ -113,6 +121,24 @@ function createTlFromData() {
     })
 }
 createTlFromData();
+
+// 按钮位置
+function setButtonPosition() {
+    let tl_height_percent = options.timenav_height_percentage;
+    let tlnav_position = options.timenav_position;
+    let button_obj = document.getElementById("button-element");
+    if (tl_height_percent > 90) {
+        button_obj.style.top = 30;
+    } else {
+        let button_top = document.getElementById('Timeline').children[0].style.height;
+        if (tlnav_position == "top") {// 判断时间轴位置
+            button_obj.style.top = parseInt(button_top) + 20;
+        } else {
+            button_obj.style.top = parseInt(button_top) - 30;
+        }
+    }
+}
+setTimeout(setButtonPosition, 1500)
 
 // 鼠标滚轮切换幻灯片
 function setWheelEvent() {

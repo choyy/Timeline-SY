@@ -391,6 +391,83 @@ function eraConfirmCancel() {
     document.getElementById("fade").style.display = "none";
 }
 
+// 时间线设置
+function timelineSettingsShow() {
+    $.ajax({
+        type: "POST",
+        url: "/api/attr/getBlockAttrs",
+        data: JSON.stringify({
+            "id": id
+        }),
+        success(res) {
+            if (res.data["custom-dataoptions"] != undefined) {
+                //读取数据
+                let dataoptions_str = res.data["custom-dataoptions"].replaceAll("&quot;", "\"");
+                let data_options = JSON.parse(dataoptions_str);
+                document.getElementById('timenav_height_percentage').value = data_options.timenav_height_percentage;
+                if (data_options.start_at_end == true) {
+                    document.getElementById('start_location').value = 1
+                }
+                if (data_options.timenav_position == "bottom") {
+                    document.getElementById('timenav_position').value = 1
+                }
+            } else {
+                document.getElementById('timenav_height_percentage').value = 25;
+            }
+        }
+    })
+
+    document.getElementById('tl_settings_panel').style.display = 'block';
+    document.getElementById('fade').style.display = 'block';
+}
+
+function tlsettingsConfirmYes() {
+    let tl_height_percent = document.getElementById('timenav_height_percentage').value;
+    options['timenav_height_percentage'] = tl_height_percent;
+    if (document.getElementById('start_location').value == 1) {
+        options.start_at_end = true;
+    }
+    if (document.getElementById('timenav_position').value == 1) {
+        options.timenav_position = 'bottom';
+    }else{
+        options.timenav_position = 'top';
+    }
+    
+    // 保存options数据
+    let data_options = {
+        timenav_height_percentage: tl_height_percent,
+        start_at_end: options.start_at_end,
+        timenav_position: options.timenav_position,
+    };
+    let data_options_string = JSON.stringify(data_options);
+    let block_attrs = {
+        id: window.baseid,
+        attrs: {
+            "custom-dataoptions": data_options_string,
+        },
+    };
+    $.ajax({
+        type: "POST",
+        url: "/api/attr/setBlockAttrs",
+        data: JSON.stringify(block_attrs),
+        success(res) {
+            console.log("save data options success");
+        },
+    });
+
+    timeline = new TL.Timeline("Timeline", dataobject, options);
+    // 设置按钮位置
+    setTimeout(setButtonPosition, 800)
+
+    document.getElementById("tl_settings_panel").style.display = "none";
+    document.getElementById("fade").style.display = "none";
+}
+
+function tlsettingsConfirmCancel() {
+    document.getElementById("tl_settings_panel").style.display = "none";
+    document.getElementById("fade").style.display = "none";
+}
+
 function modifyEditor() {
     let iframes = document.querySelectorAll("iframe[data-id]");
     // console.log(iframes);

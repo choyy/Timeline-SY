@@ -20,6 +20,7 @@
                 <li><input type="button" value="浏览器打开" class="tl-red-button"
                         onclick="window.open(window.location.href+`?blockid=${window.baseid}`)"></li>
                 <li><input type="button" value="刷新时间线" class="tl-red-button" onclick="timelineReload()"></li>
+                <li><input type="button" value="时间线设置" class="tl-red-button" onclick="timelineSettingsShow()"></li>
             </ul>
         </li>
     </div>
@@ -79,6 +80,29 @@
             <button onclick="eraConfirmCancel()" id="confirm_button_cancel" class="tl-red-button"
                 style="margin-right: 30px;font-size: 16px;">取消</button>
             <button onclick="eraConfirmYes()" id="confirm_button_yes" class="tl-blue-button"
+                style="font-size: 16px;">确认</button>
+        </div>
+    </div>
+    <div id="tl_settings_panel" class="tl_era_panel">
+        时间线高度：<input type="number" id="timenav_height_percentage" min="0" max="101" class="tl-md-field"
+            style="width: 64px;" />%
+        <div class="tl-block"></div>
+        时间线起始位置：
+        <select name="" id="start_location" class="tl-text-field" style="width: 100px;">
+            <option value="0">第一项</option>
+            <option value="1">最后一项</option>
+        </select>
+        <div class="tl-block"></div>
+        时间轴位置：
+        <select name="" id="timenav_position" class="tl-text-field" style="width: 100px;">
+            <option value="0">上方</option>
+            <option value="1">下方</option>
+        </select>
+    
+        <div class="tl_button" style="text-align: right;">
+            <button onclick="tlsettingsConfirmCancel()" id="confirm_button_cancel" class="tl-red-button"
+                style="margin-right: 30px;font-size: 16px;">取消</button>
+            <button onclick="tlsettingsConfirmYes()" id="confirm_button_yes" class="tl-blue-button"
                 style="font-size: 16px;">确认</button>
         </div>
     </div>
