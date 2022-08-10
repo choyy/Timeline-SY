@@ -84,6 +84,11 @@ function confirmYes() {
             dataobject.eras = timeline.config.eras;
             dataobject.title.text = title_text;
             timeline = new TL.Timeline("Timeline", dataobject, options);
+            timeline.on("loaded", function () {
+                // 时间线加载完毕后设置鼠标事件、字体颜色
+                setWheelEvent();
+                setMarkerFontColor();
+            });
             saveData(dataobject);
             is_edit = false;
             // 关闭输入窗
@@ -200,6 +205,16 @@ function confirmYes() {
     }
 
     timeline.goToId(event_data.unique_id);
+    if (document.getElementById("slide_title").value.substring(0, 1) == "#") { // 添加颜色
+        let font_color_name = document.getElementById("slide_title").value.substring(1, 2);
+        let font_color = getColor(font_color_name);
+        
+        if (font_color != false) {
+            let current_maker = document.getElementsByClassName("tl-timemarker tl-timemarker-active");
+            current_maker[0].children[1].children[0].children[0].children[0].style.color = font_color;
+        }
+    }
+
 
     // 保存数据
     dataobject = {
@@ -420,7 +435,8 @@ function eraConfirmYes() {
     saveData(dataobject);
     timeline = new TL.Timeline("Timeline", dataobject, options);
     timeline.on("loaded", function () {
-        // 时间线加载完毕后设置鼠标事件
+        // 时间线加载完毕后设置鼠标事件、字体颜色
+        setMarkerFontColor();
         setWheelEvent();
     });
     document.getElementById("tl_era_panel").style.display = "none";
@@ -498,9 +514,10 @@ function tlsettingsConfirmYes() {
 
     timeline = new TL.Timeline("Timeline", dataobject, options);
     timeline.on("loaded", function () {
-        // 时间线加载完毕后设置鼠标事件、按钮位置
+        // 时间线加载完毕后设置鼠标事件、文字颜色、按钮位置
         setWheelEvent();
-        setTimeout(setButtonPosition, 800)
+        setMarkerFontColor();
+        setTimeout(setButtonPosition, 1000)
     });
 
     document.getElementById("tl_settings_panel").style.display = "none";
@@ -510,6 +527,59 @@ function tlsettingsConfirmYes() {
 function tlsettingsConfirmCancel() {
     document.getElementById("tl_settings_panel").style.display = "none";
     document.getElementById("fade").style.display = "none";
+}
+
+// 设置marker字体颜色
+function getColor(color_name) {
+    switch (color_name) {
+        case "r":
+        case "R":
+            return 'red';
+        case "g":
+        case "G":
+            if (window.top.siyuan && window.top.siyuan.config.appearance.mode == 1) { // 暗色
+                return '#00ff00';
+            }
+            return 'green';
+        case "b":
+        case "B":
+            if (window.top.siyuan && window.top.siyuan.config.appearance.mode == 1) { // 暗色
+                return '#609aff';
+            }
+            return 'blue';
+        case "y":
+        case "Y":
+            if (window.top.siyuan && window.top.siyuan.config.appearance.mode == 1) { // 暗色
+                return 'yellow';
+            }
+                return '#b6a207';
+        case "o":
+        case "O":
+            return '#e19200';
+        case "p":
+        case "P":
+            if (window.top.siyuan && window.top.siyuan.config.appearance.mode == 1) { // 暗色
+                return '#d104ff';
+            }
+            return 'purple';
+
+        default:
+            return false;
+    }
+}
+function setMarkerFontColor() {
+    let tl_marker_font = document.getElementsByClassName("tl-headline tl-headline-fadeout");
+    let marker_text = "";
+    for (let i = 0; i < tl_marker_font.length; i++) {
+        marker_text = tl_marker_font[i].innerText;
+        if (marker_text.substring(0, 1) == "#") {
+            let font_color_name = marker_text.substring(1, 2);
+            let font_color = getColor(font_color_name);
+            if (font_color != false) {
+                tl_marker_font[i].style.color = font_color;
+            }
+        }
+    }
 }
 
 function modifyEditor() {

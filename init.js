@@ -118,8 +118,9 @@ function createTlFromData() {
             }
             timeline = new TL.Timeline('Timeline', dataobject, options);
             timeline.on("loaded", function () {
-                // 时间线加载完毕后设置鼠标事件、按钮位置
+                // 时间线加载完毕后设置鼠标事件、文字颜色、按钮位置
                 setWheelEvent();
+                setMarkerFontColor();
                 setTimeout(setButtonPosition, 1000)
             });
         }
