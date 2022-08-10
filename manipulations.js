@@ -419,6 +419,10 @@ function eraConfirmYes() {
     dataobject["eras"] = era_list;
     saveData(dataobject);
     timeline = new TL.Timeline("Timeline", dataobject, options);
+    timeline.on("loaded", function () {
+        // 时间线加载完毕后设置鼠标事件
+        setWheelEvent();
+    });
     document.getElementById("tl_era_panel").style.display = "none";
     document.getElementById("fade").style.display = "none";
 }
@@ -493,8 +497,11 @@ function tlsettingsConfirmYes() {
     });
 
     timeline = new TL.Timeline("Timeline", dataobject, options);
-    // 设置按钮位置
-    setTimeout(setButtonPosition, 800)
+    timeline.on("loaded", function () {
+        // 时间线加载完毕后设置鼠标事件、按钮位置
+        setWheelEvent();
+        setTimeout(setButtonPosition, 800)
+    });
 
     document.getElementById("tl_settings_panel").style.display = "none";
     document.getElementById("fade").style.display = "none";

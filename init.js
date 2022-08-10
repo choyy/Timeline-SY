@@ -117,12 +117,17 @@ function createTlFromData() {
                 }
             }
             timeline = new TL.Timeline('Timeline', dataobject, options);
+            timeline.on("loaded", function () {
+                // 时间线加载完毕后设置鼠标事件、按钮位置
+                setWheelEvent();
+                setTimeout(setButtonPosition, 1000)
+            });
         }
     })
 }
 createTlFromData();
 
-// 按钮位置
+// 设置按钮位置
 function setButtonPosition() {
     let tl_height_percent = options.timenav_height_percentage;
     let tlnav_position = options.timenav_position;
@@ -138,7 +143,6 @@ function setButtonPosition() {
         }
     }
 }
-setTimeout(setButtonPosition, 1500)
 
 // 鼠标滚轮切换幻灯片
 function setWheelEvent() {
@@ -180,4 +184,3 @@ function setWheelEvent() {
         }
     }
 }
-setTimeout(setWheelEvent, 1000)
