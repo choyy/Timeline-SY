@@ -9,8 +9,7 @@
         <script src="init.js"></script>
     </div>
     <div id="button-element" style="top: 200px;right: 30px;position: absolute;z-index: 999;">
-        <input type="button" value="新建" class="tl-blue-button"
-            onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block';">
+        <input type="button" value="新建" class="tl-blue-button" onclick="addSlide();">
         <input type="button" value="编辑" class="tl-blue-button" onclick="editSlide();">
         <input type="button" value="删除" class="tl-red-button" onclick="deleteSlide()">
         <li class="list-father">...
@@ -40,6 +39,13 @@
         <div>
             <span style="padding-left: 32px;">标题：</span>
             <input type="text" name="" id="slide_title" value="" class="tl-text-field" /></br>
+        </div>
+        <div class="tl-block"></div>
+        <div>
+            <span style="padding-left: 32px;">分组：</span>
+            <input id="input_group" list="group_list" class="tl-text-field"/>
+            <datalist id="group_list">
+            </datalist>
         </div>
         <div class="tl-block"></div>
         <div>

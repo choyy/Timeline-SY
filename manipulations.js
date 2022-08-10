@@ -18,6 +18,28 @@ function saveData(dataobject) {
     modifyEditor();
 }
 
+// 设置分组
+function setGroup() {
+    let tl_events = timeline.config.events;
+    let tl_group = new Set();
+    let group_i = "";
+    for (let i = 0; i < tl_events.length; i++) {
+        group_i = tl_events[i].group;
+        if (group_i != undefined && group_i != "") {
+            tl_group.add(group_i);
+        }
+    }
+    
+    if (tl_group.size > 0) {
+        let group_list = document.getElementById("group_list");
+        for (const group_i of tl_group) {
+            let group_item = document.createElement("option");
+            group_item.value = group_i;
+            group_list.appendChild(group_item);
+        }
+    }
+}
+
 // 清除输入框内容
 function clearIuputbox() {
     // document.getElementById("start_year").value = "";
@@ -30,6 +52,8 @@ function clearIuputbox() {
     document.getElementById("slide_contents").value = "";
     document.getElementById("slide_background").value = "";
     document.getElementById("slide_blockid").value = "";
+    document.getElementById("input_group").value = "";
+    $(document.getElementById("group_list")).empty(); // 
 }
 
 // 编辑框确认
@@ -101,6 +125,7 @@ function confirmYes() {
     event_data.start_date.year = document.getElementById("start_year").value; //开始日期
     event_data.start_date.month = document.getElementById("start_month").value;
     event_data.start_date.day = document.getElementById("start_day").value;
+    event_data["group"] = document.getElementById("input_group").value;
 
     event_end_date.year = document.getElementById("end_year").value; //结束日期
     event_end_date.year = event_end_date.year.replace(/(^\s*)|(\s*$)/g, ""); //去除空格
@@ -232,7 +257,14 @@ function deleteSlide() {
     }
 }
 
-// 编辑页面
+// 新建项目
+function addSlide() {
+    setGroup();
+    document.getElementById('light').style.display = 'block';
+    document.getElementById('fade').style.display = 'block';
+}
+
+// 编辑项目
 function editSlide() {
     // 获取该项数据，填入输入框
     is_edit = true;
@@ -251,6 +283,10 @@ function editSlide() {
             document.getElementById("end_month").value =
                 slide_data.end_date.data.month;
             document.getElementById("end_day").value = slide_data.end_date.data.year;
+        }
+        if(slide_data.group != null){
+            // 有 group 就填入
+            document.getElementById("input_group").value = slide_data.group;
         }
     }
     document.getElementById("slide_title").value = slide_data.text.headline;
@@ -272,6 +308,7 @@ function editSlide() {
         // 若background不为null填入url
         document.getElementById("slide_blockid").value = slide_data.media.blockid;
     }
+    setGroup();
     document.getElementById('light').style.display = 'block';
     document.getElementById('fade').style.display = 'block';
 }
