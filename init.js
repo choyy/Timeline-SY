@@ -2,6 +2,8 @@ var options = {
     width: '100%',
     height: '100%',
     timenav_position: 'top',
+    timenav_height_min: 0,
+    marker_height_min: 1,
     language: 'timeline3/js/locale/zh-cn.json',
     font: 'timeline3/css/fonts/font.default.css',
     default_bg_color: 'white',

@@ -18,6 +18,7 @@
                         style="margin-left: 40px;"></li>
                 <li><input type="button" value="浏览器打开" class="tl-red-button"
                         onclick="window.open(window.location.href+`?blockid=${window.baseid}`)"></li>
+                <li><input type="button" value="分组重命名" class="tl-red-button" onclick="groupRename()"></li>
                 <li><input type="button" value="刷新时间线" class="tl-red-button" onclick="timelineReload()"></li>
                 <li><input type="button" value="时间线设置" class="tl-red-button" onclick="timelineSettingsShow()"></li>
             </ul>
@@ -109,6 +110,22 @@
             <button onclick="tlsettingsConfirmCancel()" id="confirm_button_cancel" class="tl-red-button"
                 style="margin-right: 30px;font-size: 16px;">取消</button>
             <button onclick="tlsettingsConfirmYes()" id="confirm_button_yes" class="tl-blue-button"
+                style="font-size: 16px;">确认</button>
+        </div>
+    </div>
+    <div id="tl_group_rename_panel" class="tl_era_panel">
+        <div class="tl-block"></div>
+        重命名
+        <select id="group_select" class="tl-text-field" style="width: 40%;" >
+        </select>
+        为
+        <input id="group_renamed" class="tl-text-field" style="width: 40%;" />
+        <div class="tl-block"></div>
+
+        <div class="tl_button" style="text-align: right;">
+            <button onclick="groupConfirmCancel()" id="confirm_button_cancel" class="tl-red-button"
+                style="margin-right: 30px;font-size: 16px;">取消</button>
+            <button onclick="groupConfirmYes()" id="confirm_button_yes" class="tl-blue-button"
                 style="font-size: 16px;">确认</button>
         </div>
     </div>

@@ -582,6 +582,56 @@ function setMarkerFontColor() {
     }
 }
 
+// 分组重命名
+function groupRename() {
+    $(document.getElementById("group_select")).empty(); // 清空内容
+    document.getElementById("group_renamed").value = null;
+    let tl_events = timeline.config.events;
+    let tl_group = new Set();
+    let group_i = "";
+    for (let i = 0; i < tl_events.length; i++) {
+        group_i = tl_events[i].group;
+        if (group_i != undefined && group_i != "") {
+            tl_group.add(group_i);
+        }
+    }
+    
+    if (tl_group.size > 0) {
+        let group_select = document.getElementById("group_select");
+        for (const group_i of tl_group) {
+            let group_item = document.createElement("option");
+            group_item.innerText = group_i;
+            group_select.appendChild(group_item);
+        }
+    }
+
+    document.getElementById('tl_group_rename_panel').style.display = 'block';
+    document.getElementById('fade').style.display = 'block';
+}
+function groupConfirmYes() {
+    for (let i = 0; i < dataobject.events.length; i++) {
+        let group_to_rename = document.getElementById("group_select").value;
+        let group_renamed = document.getElementById("group_renamed").value;
+        if(dataobject.events[i].group == group_to_rename){
+            dataobject.events[i].group = group_renamed;
+        }
+    }
+    saveData(dataobject);
+    timeline = new TL.Timeline("Timeline", dataobject, options);
+    timeline.on("loaded", function () {
+        // 时间线加载完毕后设置鼠标事件、字体颜色
+        setMarkerFontColor();
+        setWheelEvent();
+    });
+    document.getElementById('tl_group_rename_panel').style.display = "none";
+    document.getElementById('fade').style.display = "none";
+}
+function groupConfirmCancel() {
+    document.getElementById('tl_group_rename_panel').style.display = "none";
+    document.getElementById('fade').style.display = "none";
+}
+    
+
 function modifyEditor() {
     let iframes = document.querySelectorAll("iframe[data-id]");
     // console.log(iframes);
