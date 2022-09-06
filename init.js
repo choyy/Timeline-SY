@@ -63,7 +63,9 @@ function createTlFromData() {
         success(res) {
             // 时间线设置项
             if (res.data["custom-dataoptions"] != undefined) {
-                let dataoptions_obj = res.data["custom-dataoptions"].replaceAll("&quot;", "\"");
+                // let dataoptions_obj = res.data["custom-dataoptions"].replaceAll("&quot;", "\"");
+                // 移动端浏览器版本过低，不支持 replaceAll
+                let dataoptions_obj = res.data["custom-dataoptions"].replace(/&quot;/g, "\"");
                 let data_options = JSON.parse(dataoptions_obj);
                 options['timenav_height_percentage'] = data_options.timenav_height_percentage; 
                 options.start_at_end = data_options.start_at_end;
@@ -76,9 +78,13 @@ function createTlFromData() {
                 dataobject.events[0].start_date.day = init_date.getDate();
             } else {
                 //若有已保存的数据，读取数据
-                var dataobj = res.data["custom-dataobject"].replaceAll("&quot;", "\"");
-                dataobj = dataobj.replaceAll("&lt;", "\<");
-                dataobj = dataobj.replaceAll("&gt;", "\>");
+                // var dataobj = res.data["custom-dataobject"].replaceAll("&quot;", "\"");
+                // dataobj = dataobj.replaceAll("&lt;", "\<");
+                // dataobj = dataobj.replaceAll("&gt;", "\>");
+                // 移动端浏览器版本过低，不支持 replaceAll
+                var dataobj = res.data["custom-dataobject"].replace(/&quot;/g, "\"");
+                dataobj = dataobj.replace(/&lt;/g, "\<");
+                dataobj = dataobj.replace(/&gt;/g, "\>");
                 dataobject = JSON.parse(dataobj);
 
                 var dataevents = dataobject.events;

@@ -163,7 +163,8 @@ function confirmYes() {
     );
 
     // 支持换行
-    event_data.text.text = event_data.text.text.replaceAll("\n", "<br>");
+    // event_data.text.text = event_data.text.text.replaceAll("\n", "<br>");
+    event_data.text.text = event_data.text.text.replace(/\n/g, "<br>");
 
     var background_url = document.getElementById("slide_background").value; // 背景图片
     if (background_url.slice(0, 7) == "assets/") {
@@ -312,7 +313,8 @@ function editSlide() {
     document.getElementById("slide_contents").value = document.getElementById("slide_contents").value.replace(/<a.*? href="([^\n\r]+?)".*?>(.+)<\/a>/, "[$2]($1)");
 
     // html 换行<br>转换为\n
-    document.getElementById("slide_contents").value = document.getElementById("slide_contents").value.replaceAll("<br>", "\n");
+    // document.getElementById("slide_contents").value = document.getElementById("slide_contents").value.replaceAll("<br>", "\n");
+    document.getElementById("slide_contents").value = document.getElementById("slide_contents").value.replace(/<br>/g, "\n");
 
     if (slide_data.background != null) {
         // 若background不为null填入url
@@ -459,7 +461,8 @@ function timelineSettingsShow() {
         success(res) {
             if (res.data["custom-dataoptions"] != undefined) {
                 //读取数据
-                let dataoptions_str = res.data["custom-dataoptions"].replaceAll("&quot;", "\"");
+                // let dataoptions_str = res.data["custom-dataoptions"].replaceAll("&quot;", "\"");
+                let dataoptions_str = res.data["custom-dataoptions"].replace(/&quot;/g, "\"");
                 let data_options = JSON.parse(dataoptions_str);
                 document.getElementById('timenav_height_percentage').value = data_options.timenav_height_percentage;
                 if (data_options.start_at_end == true) {
