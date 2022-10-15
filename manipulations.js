@@ -633,6 +633,16 @@ function groupConfirmCancel() {
     document.getElementById('tl_group_rename_panel').style.display = "none";
     document.getElementById('fade').style.display = "none";
 }
+
+// 切换全屏
+function setFullscreen() {
+    const widget_element = document.body;
+    if (document.fullscreenElement == null) {
+        widget_element.requestFullscreen();
+    } else {
+        document.exitFullscreen();
+    }
+}
     
 
 function modifyEditor() {
