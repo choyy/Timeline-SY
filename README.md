@@ -2,6 +2,8 @@
 
 此项目是将 [TimelineJS3](https://github.com/NUKnightLab/TimelineJS3) 移植为[思源笔记](https://github.com/siyuan-note/siyuan)挂件。
 
+反馈可在 [Issues · choyy/Timeline-SY](https://github.com/choyy/Timeline-SY/issues) 或 [[挂件] 时间线 - 链滴](https://ld246.com/article/1653294035002/comment/1662474726531#comments) 或 choo-yy@qq.com。
+
 ## 预览
 
 ![](https://b3logfile.com/file/2022/06/preview-b9ad35d5.png?imageView2/2/interlace/1/format/webp)
