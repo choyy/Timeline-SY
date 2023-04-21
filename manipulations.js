@@ -298,7 +298,7 @@ function editSlide() {
             document.getElementById("end_year").value = slide_data.end_date.data.year;
             document.getElementById("end_month").value =
                 slide_data.end_date.data.month;
-            document.getElementById("end_day").value = slide_data.end_date.data.year;
+            document.getElementById("end_day").value = slide_data.end_date.data.day;
         }
         if(slide_data.group != null){
             // 有 group 就填入
