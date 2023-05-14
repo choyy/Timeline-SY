@@ -1,6 +1,20 @@
 {
-  "name": "timeline-sy",
+  "name": "时间线-Timeline",
   "author": "choyy",
   "url": "https://github.com/choyy/Timelline-SY",
-  "version": "0.0.14"
+  "version": "0.0.15",
+  "displayName": {
+    "default": "时间线",
+    "zh_CN": "时间线"
+  },
+  "description": {
+    "default": "以时间轴记录事件",
+    "zh_CN": "以时间轴记录事件"
+  },
+  "readme": {
+    "default": "README.md"
+  },
+  "i18n": [
+    "zh_CN"
+  ],
 }
