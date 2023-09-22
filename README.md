@@ -2,7 +2,7 @@
 
 此项目是将 [TimelineJS3](https://github.com/NUKnightLab/TimelineJS3) 移植为[思源笔记](https://github.com/siyuan-note/siyuan)挂件。
 
-反馈可在 [Issues · choyy/Timeline-SY](https://github.com/choyy/Timeline-SY/issues) 或 [[挂件] 时间线 - 链滴](https://ld246.com/article/1653294035002/comment/1662474726531#comments) 或 choo-yy@qq.com。
+反馈可在 [Issues · choyy/Timeline-SY](https://github.com/choyy/Timeline-SY/issues) 或 [[挂件] 时间线 - 链滴](https://ld246.com/article/1653294035002/comment/1662474726531#comments) 。
 
 ## 预览
 
@@ -59,6 +59,7 @@
 
 ## 更新日志
 
+- 20230421：v0.0.16，支持时、分、秒
 - 20230421：v0.0.14，支持全屏，修复#17
 - 20220906：v0.0.13，修复移动端无法显示的bug
 - 20220819：v0.0.12，支持分组重命名

@@ -42,7 +42,10 @@ var dataobject = {
             "start_date": {
                 "year": "",
                 "month": "",
-                "day": ""
+                "day": "",
+                "hour": "",
+                "minute": "",
+                "second": "",
             },
             "text": {
                 "headline": "创建了时间线",
@@ -76,6 +79,9 @@ function createTlFromData() {
                 dataobject.events[0].start_date.year = init_date.getFullYear();
                 dataobject.events[0].start_date.month = init_date.getMonth() + 1;
                 dataobject.events[0].start_date.day = init_date.getDate();
+                dataobject.events[0].start_date.hour = init_date.getHours();
+                dataobject.events[0].start_date.minute = init_date.getMinutes();
+                dataobject.events[0].start_date.second = init_date.getSeconds();
             } else {
                 //若有已保存的数据，读取数据
                 // var dataobj = res.data["custom-dataobject"].replaceAll("&quot;", "\"");
