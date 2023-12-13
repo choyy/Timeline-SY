@@ -294,9 +294,9 @@ function editSlide() {
         document.getElementById("start_month").value = slide_data.start_date.data.month;
         document.getElementById("start_day").value = slide_data.start_date.data.day;
         if (slide_data.end_date.data.hour != undefined) {
-            document.getElementById("end_hour").value = slide_data.end_date.data.hour;
-            document.getElementById("end_minute").value = slide_data.end_date.data.minute;
-            document.getElementById("end_second").value = slide_data.end_date.data.second;
+            document.getElementById("start_hour").value = slide_data.start_date.data.hour;
+            document.getElementById("start_minute").value = slide_data.start_date.data.minute;
+            document.getElementById("start_second").value = slide_data.start_date.data.second;
         }
 
         if (slide_data.end_date != null) {
