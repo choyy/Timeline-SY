@@ -293,7 +293,7 @@ function editSlide() {
         document.getElementById("start_year").value = slide_data.start_date.data.year;
         document.getElementById("start_month").value = slide_data.start_date.data.month;
         document.getElementById("start_day").value = slide_data.start_date.data.day;
-        if (slide_data.end_date.data.hour != undefined) {
+        if (slide_data.end_date != null && slide_data.end_date.data.hour != undefined) {
             document.getElementById("start_hour").value = slide_data.start_date.data.hour;
             document.getElementById("start_minute").value = slide_data.start_date.data.minute;
             document.getElementById("start_second").value = slide_data.start_date.data.second;
