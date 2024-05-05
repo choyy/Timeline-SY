@@ -146,6 +146,9 @@ function confirmYes() {
     ) {
         event_end_date.month = document.getElementById("end_month").value;
         event_end_date.day = document.getElementById("end_day").value;
+        event_end_date.hour = document.getElementById("end_hour").value;
+        event_end_date.minute = document.getElementById("end_minute").value;
+        event_end_date.second = document.getElementById("end_second").value;
         event_data["end_date"] = event_end_date;
     }
     if (document.getElementById("slide_title").value == "") {
