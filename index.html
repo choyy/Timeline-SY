@@ -9,144 +9,144 @@
         <script src="init.js"></script>
     </div>
     <div id="button-element" style="top: 200px;right: 30px;position: absolute;z-index: 999;">
-        <input type="button" value="新建" class="tl-blue-button" onclick="addSlide();">
-        <input type="button" value="编辑" class="tl-blue-button" onclick="editSlide();">
-        <input type="button" value="删除" class="tl-red-button" onclick="deleteSlide()">
+        <input type="button" value="Create" class="tl-blue-button" onclick="addSlide();">
+        <input type="button" value="Edit" class="tl-blue-button" onclick="editSlide();">
+        <input type="button" value="Delete" class="tl-red-button" onclick="deleteSlide()">
         <li class="list-father">...
             <ul class="list-son">
-                <li><input type="button" value="纪元" class="tl-blue-button" onclick="eraPanelShow();"
+                <li><input type="button" value="Epoch" class="tl-blue-button" onclick="eraPanelShow();"
                         style="margin-left: 40px;"></li>
-                <li><input type="button" value="切换全屏" class="tl-blue-button" onclick="setFullscreen();"
+                <li><input type="button" value="Toggle full screen" class="tl-blue-button" onclick="setFullscreen();"
                         style="margin-left: 13px;"></li>
-                <li><input type="button" value="分组重命名" class="tl-blue-button" onclick="groupRename()"></li>
-                <li><input type="button" value="浏览器打开" class="tl-red-button"
+                <li><input type="button" value="Group rename" class="tl-blue-button" onclick="groupRename()"></li>
+                <li><input type="button" value="Open in browser" class="tl-red-button"
                         onclick="window.open(window.location.href+`?blockid=${window.baseid}`)"></li>
-                <li><input type="button" value="刷新时间线" class="tl-red-button" onclick="timelineReload()"></li>
-                <li><input type="button" value="时间线设置" class="tl-red-button" onclick="timelineSettingsShow()"></li>
+                <li><input type="button" value="Refresh timeline" class="tl-red-button" onclick="timelineReload()"></li>
+                <li><input type="button" value="Timeline settings" class="tl-red-button" onclick="timelineSettingsShow()"></li>
             </ul>
         </li>
     </div>
     <div id="light" class="white_content">
         <div id="date_area">
-            <b>开始日期：</b>
-            <input type="number" name="" id="start_year" value="" class="tl-year-field" />年
-            <input type="number" name="" id="start_month" value="" min="1" max="12" class="tl-md-field" />月
-            <input type="number" name="" id="start_day" value="" min="1" max="31" class="tl-md-field" />日
-            <input type="number" name="" id="start_hour" value="" min="0" max="23" class="tl-md-field" />时
-            <input type="number" name="" id="start_minute" value="" min="0" max="59" class="tl-md-field" />分
-            <input type="number" name="" id="start_second" value="" min="0" max="59" class="tl-md-field" />秒</br>
+            <b>Start date：</b>
+            <input type="number" name="" id="start_year" value="" class="tl-year-field" />Year
+            <input type="number" name="" id="start_month" value="" min="1" max="12" class="tl-md-field" />Month
+            <input type="number" name="" id="start_day" value="" min="1" max="31" class="tl-md-field" />Day
+            <input type="number" name="" id="start_hour" value="" min="0" max="23" class="tl-md-field" />Hour
+            <input type="number" name="" id="start_minute" value="" min="0" max="59" class="tl-md-field" />Minute
+            <input type="number" name="" id="start_second" value="" min="0" max="59" class="tl-md-field" />Second</br>
             <div class="tl-block"></div>
-            结束日期：
-            <input type="number" name="" id="end_year" value="" class="tl-year-field" />年
-            <input type="number" name="" id="end_month" value="" min="1" max="12" class="tl-md-field" />月
-            <input type="number" name="" id="end_day" value="" min="1" max="31" class="tl-md-field" />日
-            <input type="number" name="" id="end_hour" value="" min="0" max="23" class="tl-md-field" />时
-            <input type="number" name="" id="end_minute" value="" min="0" max="59" class="tl-md-field" />分
-            <input type="number" name="" id="end_second" value="" min="0" max="59" class="tl-md-field" />秒</br>
+            End date：
+            <input type="number" name="" id="end_year" value="" class="tl-year-field" />Year
+            <input type="number" name="" id="end_month" value="" min="1" max="12" class="tl-md-field" />Month
+            <input type="number" name="" id="end_day" value="" min="1" max="31" class="tl-md-field" />Day
+            <input type="number" name="" id="end_hour" value="" min="0" max="23" class="tl-md-field" />Hour
+            <input type="number" name="" id="end_minute" value="" min="0" max="59" class="tl-md-field" />Minute
+            <input type="number" name="" id="end_second" value="" min="0" max="59" class="tl-md-field" />Second</br>
         </div>
         <div class="tl-block"></div>
         <div>
-            <span style="padding-left: 32px;"><b>标题：</b></span>
+            <span style="padding-left: 32px;"><b>Title：</b></span>
             <input type="text" name="" id="slide_title" value="" class="tl-text-field" /></br>
         </div>
         <div class="tl-block"></div>
         <div>
-            <span style="padding-left: 32px;">分组：</span>
+            <span style="padding-left: 32px;">Group：</span>
             <input id="input_group" list="group_list" class="tl-text-field"/>
             <datalist id="group_list">
             </datalist>
         </div>
         <div class="tl-block"></div>
         <div>
-            <span style="padding-left: 32px;vertical-align: top;">描述：</span>
+            <span style="padding-left: 32px;vertical-align: top;">Description：</span>
             <textarea name="" id="slide_contents" rows="5" class="tl-text-field"></textarea></br>
         </div>
         <div class="tl-block"></div>
-        背景图片：<input type="text" name="" id="slide_background" class="tl-text-field" style="margin-left: 3px;" /></br>
+        Background image：<input type="text" name="" id="slide_background" class="tl-text-field" style="margin-left: 3px;" /></br>
         <div class="tl-block"></div>
-        思源块 id：<input type="text" name="" id="slide_blockid" class="tl-text-field" style="margin-left: 2px;" /></br>
+        Source block id：<input type="text" name="" id="slide_blockid" class="tl-text-field" style="margin-left: 2px;" /></br>
 
         <div class="tl-block"></div>
         <div class="tl-block"></div>
-        <!-- 确认、取消按钮 -->
+        <!-- Confirm, cancel buttons -->
         <div class="tl_button" style="text-align: right;">
             <button onclick="confirmCancel()" id="confirm_button_cancel" class="tl-red-button"
-                style="margin-right: 30px; font-size: 16px;">取消</button>
+                style="margin-right: 30px; font-size: 16px;">Cancel</button>
             <button onclick="confirmYes()" id="confirm_button_yes" class="tl-blue-button"
-                style="font-size: 16px;">确认</button>
+                style="font-size: 16px;">Confirm</button>
         </div>
     </div>
     <div id="tl_era_panel" class="tl_era_panel">
         <div id="vote">
             <div id="era-item">
                 <input type="number" class="tl-year-field" id="start_date" name="era_start_date" />
-                年 ～
+                Year ～
                 <input type="number" class="tl-year-field" id="end_date" name="era_end_date" />
-                年：
-                <input type="text" class="tl-era-title-field" placeholder="纪元名称" name="era_title" />
+                Year：
+                <input type="text" class="tl-era-title-field" placeholder="Era title" name="era_title" />
                 <button id="del-era-item">-</button>
                 <div class="tl-block"></div>
             </div>
             <div id="position-sign"></div>
         </div>
-        <button id="button" class="tl-blue-button" onclick="eraInputAdd()" style="margin-top: -2px;">添加</button>
+        <button id="button" class="tl-blue-button" onclick="eraInputAdd()" style="margin-top: -2px;">Add</button>
 
         <div class="tl_button" style="text-align: right;">
             <button onclick="eraConfirmCancel()" id="confirm_button_cancel" class="tl-red-button"
-                style="margin-right: 30px;font-size: 16px;">取消</button>
+                style="margin-right: 30px;font-size: 16px;">Cancel</button>
             <button onclick="eraConfirmYes()" id="confirm_button_yes" class="tl-blue-button"
-                style="font-size: 16px;">确认</button>
+                style="font-size: 16px;">Confirm</button>
         </div>
     </div>
     <div id="tl_settings_panel" class="tl_era_panel">
-        时间线高度：<input type="number" id="timenav_height_percentage" min="0" max="101" class="tl-md-field"
+        Timeline height：<input type="number" id="timenav_height_percentage" min="0" max="101" class="tl-md-field"
             style="width: 64px;" />%
         <div class="tl-block"></div>
-        时间线起始位置：
+        Timeline start position：
         <select name="" id="start_location" class="tl-text-field" style="width: 100px;">
-            <option value="0">第一项</option>
-            <option value="1">最后一项</option>
+            <option value="0">First item</option>
+            <option value="1">Last item</option>
         </select>
         <div class="tl-block"></div>
-        时间轴位置：
+        Timeline position：
         <select name="" id="timenav_position" class="tl-text-field" style="width: 100px;">
-            <option value="0">上方</option>
-            <option value="1">下方</option>
+            <option value="0">Top</option>
+            <option value="1">Bottom</option>
         </select>
     
         <div class="tl_button" style="text-align: right;">
             <button onclick="tlsettingsConfirmCancel()" id="confirm_button_cancel" class="tl-red-button"
-                style="margin-right: 30px;font-size: 16px;">取消</button>
+                style="margin-right: 30px;font-size: 16px;">Cancel</button>
             <button onclick="tlsettingsConfirmYes()" id="confirm_button_yes" class="tl-blue-button"
-                style="font-size: 16px;">确认</button>
+                style="font-size: 16px;">Confirm</button>
         </div>
     </div>
     <div id="tl_group_rename_panel" class="tl_era_panel">
         <div class="tl-block"></div>
-        重命名
+        Rename
         <select id="group_select" class="tl-text-field" style="width: 40%;" >
         </select>
-        为
+        As
         <input id="group_renamed" class="tl-text-field" style="width: 40%;" />
         <div class="tl-block"></div>
 
         <div class="tl_button" style="text-align: right;">
             <button onclick="groupConfirmCancel()" id="confirm_button_cancel" class="tl-red-button"
-                style="margin-right: 30px;font-size: 16px;">取消</button>
+                style="margin-right: 30px;font-size: 16px;">Cancel</button>
             <button onclick="groupConfirmYes()" id="confirm_button_yes" class="tl-blue-button"
-                style="font-size: 16px;">确认</button>
+                style="font-size: 16px;">Confirm</button>
         </div>
     </div>
     <div id="fade" class="black_overlay"></div>
     <script>
-        // 开始日期填入默认值
+        // Fill in the default value for the start date
         var init_date = new Date();
         document.getElementById("start_year").value = init_date.getFullYear();
         document.getElementById("start_month").value = init_date.getMonth() + 1;
         document.getElementById("start_day").value = init_date.getDate();
     </script>
     <script>
-        // 鼠标滚轮调整日期时禁用滚轮
+        // Disable mouse wheel when adjusting date
         var box = document.getElementById("date_area")
         function onMouseWheel(ev) {
             return false;
