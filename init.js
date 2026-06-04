@@ -4,7 +4,7 @@ var options = {
     timenav_position: 'top',
     timenav_height_min: 0,
     marker_height_min: 1,
-    language: 'timeline3/js/locale/zh-cn.json',
+    language: 'timeline3/js/locale/en.json',
     font: 'timeline3/css/fonts/font.default.css',
     default_bg_color: 'white',
     start_at_end: false,
